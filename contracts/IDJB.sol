@@ -32,8 +32,6 @@ contract IDJB {
 	function playNextSong(){
         lastSongChange = now;
         currentSongIndex += 1;
-        playNext(song[currentSongIndex].title, song[currentSongIndex].author, song[currentSongIndex].url);
+        playNext(playlist[currentSongIndex].title, playlist[currentSongIndex].author, playlist[currentSongIndex].url);
 	}
-
-
 } 
