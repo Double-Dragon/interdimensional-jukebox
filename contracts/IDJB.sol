@@ -1,10 +1,13 @@
 // Jukebox.sol
 
 contract IDJB {
-	string[] urllist;
-	song[] playlist;
 
-	event playNext(string songName, string author, string url);
+	song[] public playlist;
+    uint currentSongIndex;
+    uint lastSongChange;
+    
+    event playNext(string title, string author, string url);
+// 	event playNext(song nextSong);
 
 	struct song{
 		string title;
@@ -15,11 +18,11 @@ contract IDJB {
 	}
 
 	function IDJB(){
-
+		currentSongIndex = 0;
 	}
 
-	function addSong(){
-
+	function addSong(string name, string author, string url){
+        playlist.push(song(name, author, url, now, msg.sender));
 	}
 
 	function removeSong(){
@@ -27,7 +30,8 @@ contract IDJB {
 	}
 
 	function playNextSong(){
-
+        lastSongChange = now;
+        
 	}
 
 
