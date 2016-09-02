@@ -1,7 +1,7 @@
 // Jukebox.sol
 
 contract IDJB {
-	string[] namelist;
+	string[] urllist;
 	song[] playlist;
 
 	event playNext(string songName, string author, string url);
@@ -23,7 +23,7 @@ contract IDJB {
 	}
 
 	function removeSong(){
-		
+
 	}
 
 	function playNextSong(){
