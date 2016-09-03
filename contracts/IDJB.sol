@@ -4,8 +4,8 @@ contract IDJB {
 
   song[] public playlist;
   uint public currentSongIndex;
+  uint public lastSongChange;
 
-  event SongAdd(string title, string author, string url);
   event playNext(string title, string author, string url);
 
   function IDJB() {
@@ -16,13 +16,14 @@ contract IDJB {
     string title;
     string author;
     string url;
+    uint videoLength;
     uint dateAdded;
     address adder; 
   }
 
   function addSong(string title, string author, string url) {
-      playlist.push(song(title, author, url, now, msg.sender));
-      SongAdd(title, author, url);
+    playlist.push(song(title, author, url, now, msg.sender));
+
   }
 
   function getNextSong() constant returns (string title, string author, string url) {
@@ -31,9 +32,9 @@ contract IDJB {
     url = playlist[currentSongIndex].url;
   }
 
-  // function playNextSong() {
-  //   lastSongChange = now;
-  //   currentSongIndex += 1;
-  //   playNext(playlist[currentSongIndex].title, playlist[currentSongIndex].author, playlist[currentSongIndex].url);
-  // }
+  function playNextSong() {
+    lastSongChange = now;
+    currentSongIndex += 1;
+    playNext(playlist[currentSongIndex].title, playlist[currentSongIndex].author, playlist[currentSongIndex].url);
+  }
 } 
