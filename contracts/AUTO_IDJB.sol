@@ -2,22 +2,14 @@
 
 contract IDJB {
 
-  address MasterController;
   song[] public playlist;
   uint public currentSongIndex;
   uint public lastSongChange;
 
   event playNext(string title, string author, string url);
 
-  modifier onlyMasterController {
-    if (MasterController != msg.sender)
-        throw;
-    _
-  }
-
   function IDJB() {
     currentSongIndex = 0;
-    MasterController = msg.sender;
   }
 
   struct song {
@@ -29,14 +21,16 @@ contract IDJB {
     address adder; 
   }
 
-  function addSong(string title, string author, string url) {
-    playlist.push(song(title, author, url, now, msg.sender));
+  function addSong(string title, string author, string url, uint videoLength) {
+    if (playlist.length - currentSongIndex <= 5) throw;
+    playlist.push(song(title, author, url, videoLength, now, msg.sender));
   }
 
   function cleanPlaylist() {
     var currentTime = now;
     for (var i = currentSongIndex; currentSongIndex < playlist.length; i++) {
       if (playlist[i].videoLength + lastSongChange < currentTime) {
+        lastSongChange += playlist[i].videoLength;
         currentSongIndex += 1;
       }
     }
