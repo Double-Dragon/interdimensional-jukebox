@@ -24,7 +24,7 @@ contract IDJB {
     string title;
     string author;
     string url;
-    uint videoLength;
+    uint videoLength; // in milliseconds
     uint dateAdded;
     address adder; 
   }
@@ -32,6 +32,13 @@ contract IDJB {
   function addSong(string title, string author, string url, uint vLength) {
     playlist.push(song(title, author, url, vLength, now, msg.sender));
 
+  function cleanPlaylist() {
+    var currentTime = now;
+    for (var i = currentSongIndex; currentSongIndex < playlist.length; i++) {
+      if (playlist[i].videoLength + lastSongChange < currentTime) {
+        currentSongIndex += 1;
+      }
+    }
   }
 
 // we don't need this function because the contract already exposes the list and the currentSongIndex
