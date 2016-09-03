@@ -2,39 +2,36 @@ var accounts;
 var account;
 var balance;
 
-function setStatus(message) {
-  var status = document.getElementById("status");
-  status.innerHTML = message;
-};
+function addSong() {
+  var jukebox = IDJB.deployed();
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
-
-  meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
-  }).catch(function(e) {
+  var url = document.getElementById("url").value;
+  var author = document.getElementById("author").value;
+  var title = document.getElementById("title").value;
+  jukebox.addSong(title, author, url, {from: account}).then(function(msg) {
+    console.log(msg);
+  })
+  .catch(function(e) {
+    console.log('Encountered Error:');
     console.log(e);
-    setStatus("Error getting balance; see log.");
   });
-};
+}
 
-function sendCoin() {
-  var meta = MetaCoin.deployed();
+function getNextSong() {
+  var jukebox = IDJB.deployed();
+  jukebox.getNextSong.call({from: account}).then(function(msg) {
+    console.log('Getting Playlist:');
+    console.log(msg);
+  })
+}
 
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
-
-  setStatus("Initiating transaction... (please wait)");
-
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
-    setStatus("Transaction complete!");
-    refreshBalance();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error sending coin; see log.");
-  });
-};
+function readStruct() {
+  var jukebox = IDJB.deployed();
+  jukebox.currentSongIndex.call({from: account}).then(function(msg) {
+    console.log('Reading Struct:');
+    console.log(msg);
+  })
+}
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
@@ -50,7 +47,5 @@ window.onload = function() {
 
     accounts = accs;
     account = accounts[0];
-
-    refreshBalance();
   });
 }
