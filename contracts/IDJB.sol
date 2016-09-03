@@ -2,6 +2,7 @@
 
 contract IDJB {
 
+  address MasterController;
   song[] public playlist;
   uint public currentSongIndex;
   uint public lastSongChange;
