@@ -3,7 +3,7 @@
 contract IDJB {
 
 	song[] public playlist;
-    uint currentSongIndex;
+    uint public currentSongIndex;
     uint lastSongChange;
     
     event playNext(string title, string author, string url);
