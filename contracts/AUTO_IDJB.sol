@@ -4,15 +4,11 @@ contract AUTOIDJB {
 
   song[] public playlist;
   uint public currentSongIndex;
-  uint256 public lastSongChange;
+  uint public lastSongChange;
+  uint numQueued;
   
   event playNext(string title, string author, string url);
-  event CurrentSongIndex(uint currentIndex, uint currentLength);
-
-  function IDJB() {
-    currentSongIndex = 0;
-    lastSongChange = now;
-  }
+  event playlistInfo(uint currentIndex, uint currentLength);
 
   struct song {
     string title;
@@ -20,11 +16,23 @@ contract AUTOIDJB {
     string url;
     uint videoLength; // in milliseconds
   }
+    
+  // adding songs should increase cost wrt. to videoLength;
+  modifier playlistNotFull {
+    if (playlist.length - currentSongIndex >= numQueued)
+        throw;
+    _
+  }
 
-  function addSong(string title, string author, string url, uint videoLength) {
+  function IDJB() {
+    currentSongIndex = 0;
+    lastSongChange = now;
+    numQueued = 5;
+  }
+
+  function addSong (string title, string author, string url, uint videoLength) playlistNotFull {
     cleanPlaylist();
-    if (playlist.length - currentSongIndex >= 5) throw;
-    // adding songs should increase cost wrt. to videoLength;
+
     playlist.push(song(title, author, url, videoLength));
   }
 
@@ -44,7 +52,7 @@ contract AUTOIDJB {
   }
 
   function cleanPlaylist() {
-    uint256 currentTime = now;
+    uint currentTime = now;
     for (uint i = currentSongIndex; currentSongIndex < playlist.length; i++) {
       if (playlist[i].videoLength + lastSongChange < currentTime) {
         lastSongChange += playlist[i].videoLength;
@@ -53,6 +61,6 @@ contract AUTOIDJB {
         break;
       }
     }
-    CurrentSongIndex(currentSongIndex, playlist.length);
+    playlistInfo(currentSongIndex, playlist.length);
   }
 }
