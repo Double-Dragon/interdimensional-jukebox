@@ -29,8 +29,9 @@ contract IDJB {
     address adder; 
   }
 
-  function addSong(string title, string author, string url, uint vLength) {
-    playlist.push(song(title, author, url, vLength, now, msg.sender));
+  function addSong(string title, string author, string url) {
+    playlist.push(song(title, author, url, now, msg.sender));
+  }
 
   function cleanPlaylist() {
     var currentTime = now;
