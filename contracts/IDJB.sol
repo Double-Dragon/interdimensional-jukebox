@@ -8,8 +8,15 @@ contract IDJB {
 
   event playNext(string title, string author, string url);
 
+  modifier onlyMasterController {
+    if (MasterController != msg.sender)
+        throw;
+    _
+  }
+
   function IDJB() {
     currentSongIndex = 0;
+    MasterController = msg.sender;
   }
 
   struct song {
@@ -33,7 +40,7 @@ contract IDJB {
   //   url = playlist[currentSongIndex].url;
   // }
 
-  function playNextSong() {
+  function playNextSong() onlyMasterController {
     lastSongChange = now;
     currentSongIndex += 1;
     playNext(playlist[currentSongIndex].title, playlist[currentSongIndex].author, playlist[currentSongIndex].url);
