@@ -53,11 +53,10 @@ contract AUTOIDJB {
     } else {
         nextNextSong = 'no more songs!';   
     }
-    // playNext(playlist[currentSongIndex].title, playlist[currentSongIndex].author, playlist[currentSongIndex].id);
   }
 
   function getQueuedSongs() notEmptyPlaylist returns (uint sIndex, uint eIndex) {
-
+    return (currentSongIndex, playlist.length);
   }
 
   function cleanPlaylist() {
