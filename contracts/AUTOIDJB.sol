@@ -30,7 +30,7 @@ contract AUTOIDJB {
     _
   }
 
-  function IDJB() {
+  function AUTOIDJB() {
     currentSongIndex = 0;
     lastSongChange = now;
     numQueued = 5;
