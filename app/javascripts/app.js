@@ -2,14 +2,14 @@ var accounts;
 var account;
 var balance;
 
-function addSong() {
-  var jukebox = IDJB.deployed();
+var jukebox = AUTOIDJB.deployed();
 
+function addSong() {
   var url = document.getElementById("url").value;
   var author = document.getElementById("author").value;
   var title = document.getElementById("title").value;
   jukebox.addSong(title, author, url, {from: account}).then(function(msg) {
-    console.log(msg);
+    console.log("Transaction ID:", msg);
   })
   .catch(function(e) {
     console.log('Encountered Error:');
@@ -17,21 +17,15 @@ function addSong() {
   });
 }
 
-function getNextSong() {
-  var jukebox = IDJB.deployed();
-  jukebox.getNextSong.call({from: account}).then(function(msg) {
-    console.log('Getting Playlist:');
-    console.log(msg);
-  })
-}
-
-function readStruct() {
-  var jukebox = IDJB.deployed();
-  jukebox.currentSongIndex.call({from: account}).then(function(msg) {
-    console.log('Reading Struct:');
-    console.log(msg);
-  })
-}
+var playlist = [];
+jukebox.playNext({from: "latest"}).watch(function(err, result) {
+  console.log(result);
+  var newPlaylist = [];
+  for (var i = 0; i < result.length; i++) {
+    newPlaylist.push[result[i]];
+    playlist = newPlaylist;
+  }
+});
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
