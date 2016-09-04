@@ -12,7 +12,6 @@ function onYouTubeIframeAPIReady() {
     videoId: 'YmNlWf3Lvhw',
     events: {
       'onReady': onPlayerReady,
-      // 'onStateChange': onPlayerStateChange
     }
   });
 }
@@ -20,7 +19,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.playVideo();
   console.log('Player is Ready');
-  setTimeout(playNextSong, 6000);
+  setTimeout(playNextSong, 1000);
 }
 
 var stop = false;
