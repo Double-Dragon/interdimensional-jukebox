@@ -30,18 +30,33 @@ var defaultSong = {
   'suggestedQuality': 'large'
 }
 
+var songTemplate = {
+  'startSeconds': 0,
+  'endSeconds': 60,
+  'suggestedQuality': 'large'
+}
+
 function playNextSong() {
-  console.log('playNextSong wrapper');
   if (!playlist[0]) {
-    setTimeout(() => playNext(defaultSong), 12000);
+    setTimeout(() => {
+      console.log('Playing Default');
+      playlist.shift();
+      playNext(defaultSong)
+    }, 10000);
   } else {
-    setTimeout(() => playNext(defaultSong), 5000);
+    setTimeout(() => {
+      nextVideo = playlist.shift();
+      playNext(Object.assign({}, songTemplate, {videoId: nextVideo}));
+    }, 10000);
   }
 }
 
 function playNext(videoObject) {
-  console.log('playNext');
   player.loadVideoById(videoObject);
-  playlist.pop();
   playNextSong();
+}
+
+function logPlaylist() {
+  console.log('Playlist:');
+  console.log(playlist);
 }
