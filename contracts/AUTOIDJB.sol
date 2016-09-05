@@ -6,7 +6,7 @@ contract AUTOIDJB {
   uint qLimit;
   uint videoLength;
 
-  event SongAdded(string title, string author, string id);
+  event AddSong(string title, string author, string id);
   event playlistInfo(uint currentIndex, uint currentLength);
 
   struct song {
