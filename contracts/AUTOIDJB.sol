@@ -3,10 +3,10 @@ contract AUTOIDJB {
   song[] public playlist;
   uint public currentSongIndex;
   uint public lastSongChange;
-  uint numQueued;
+  uint qLimit;
   uint videoLength;
 
-  event playNext(string title, string author, string id);
+  event SongAdded(string title, string author, string id);
   event playlistInfo(uint currentIndex, uint currentLength);
 
   struct song {
@@ -17,7 +17,7 @@ contract AUTOIDJB {
 
   // adding songs should increase cost wrt. to videoLength;
   modifier notFullPlaylist {
-    if (playlist.length - currentSongIndex >= numQueued)
+    if (playlist.length - currentSongIndex >= qLimit)
         throw;
     _
   }
@@ -28,7 +28,7 @@ contract AUTOIDJB {
     _
   }
   
-    modifier cleanPlaylist() {
+  modifier cleanPlaylist() {
     uint currentTime = now;
     for (uint i = currentSongIndex; currentSongIndex < playlist.length; i++) {
       if (videoLength + lastSongChange < currentTime) {
@@ -45,12 +45,14 @@ contract AUTOIDJB {
   function AUTOIDJB() {
     currentSongIndex = 0;
     lastSongChange = now;
-    numQueued = 5;
+    qLimit = 10;
     videoLength = 10; // time of each video in seconds can be param of AUTOIDJB
   }
 
+  // Everytime a song is added, an AddSong event emitted.
   function addSong (string title, string author, string id) cleanPlaylist notFullPlaylist {
     playlist.push(song(title, author, id));
+    AddSong(title, author, id);
   }
 
   //TODO: add author and title to each field
@@ -68,7 +70,7 @@ contract AUTOIDJB {
     }
   }
 
-  function getQueuedSongs() cleanPlaylist notEmptyPlaylist returns (uint sIndex, uint eIndex) {
+  function getQueuedPlaylistLength() cleanPlaylist notEmptyPlaylist returns (uint sIndex, uint eIndex) {
     return (currentSongIndex, playlist.length);
   }
 
