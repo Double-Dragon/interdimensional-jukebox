@@ -1,3 +1,4 @@
+// This file submits actions and listens to events on ethereum
 var accounts;
 var account;
 var balance;
@@ -9,18 +10,19 @@ function addSong() {
   var author = document.getElementById("author").value;
   var title = document.getElementById("title").value;
   jukebox.addSong(title, author, url, {from: account}).then(function(msg) {
-    console.log("Transaction ID:", msg);
+    console.log("Success! Transaction ID:", msg);
   })
   .catch(function(e) {
-    console.log('Encountered Error:');
+    console.log('Failure! Encountered Error:');
     console.log(e);
   });
 }
 
 var playlist = [];
-jukebox.playNext({from: "latest"}).watch(function(err, result) {
+jukebox.AddSong({from: "latest"}).watch(function(err, result) {
+  // TODO: write helper to convert array to object.
   console.log(result);
-  var newPlaylist = [];
+  var newPlaylist = playlist.slice(0);
   for (var i = 0; i < result.length; i++) {
     newPlaylist.push[result[i]];
     playlist = newPlaylist;
