@@ -19,15 +19,6 @@ function addSong() {
 }
 
 var playlist = [];
-jukebox.AddSong({from: "latest"}).watch(function(err, result) {
-  // TODO: write helper to convert array to object.
-  console.log(result);
-  var newPlaylist = playlist.slice(0);
-  for (var i = 0; i < result.length; i++) {
-    newPlaylist.push[result[i]];
-    playlist = newPlaylist;
-  }
-});
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
@@ -44,4 +35,14 @@ window.onload = function() {
     accounts = accs;
     account = accounts[0];
   });
+  var addedSongs = jukebox.AddSong({}, {from: "latest"});
+  addedSongs.watch(function(err, result) {
+  // TODO: write helper to convert array to object.
+  console.log('Heard an event!');
+  console.log(result);
+  var newPlaylist = playlist.slice(0);
+  // TODO: add error handling on bad result
+  newPlaylist.push(result.args.id);
+  playlist = newPlaylist;
+});
 }
