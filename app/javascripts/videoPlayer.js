@@ -37,10 +37,9 @@ var songTemplate = {
 }
 
 function playNextSong() {
-  if (!playlist[0]) {
+  if (playlist[0] === undefined) {
     setTimeout(() => {
       console.log('Playing Default');
-      playlist.shift();
       playNext(defaultSong)
     }, 10000);
   } else {
