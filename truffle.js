@@ -11,7 +11,7 @@ module.exports = {
     "images/": "images/"
   },
   rpc: {
-    host: "localhost",
+    host: "https://morden.infura.io/CspWpgT4vuC2gVNShfNQ",
     port: 8545
   }
 };

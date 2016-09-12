@@ -4,8 +4,8 @@ var accounts;
 var account;
 var balance;
 
-var jukebox = AUTOIDJB.deployed();
-// var jukebox = AUTOIDJB.at('yoyoyoyoyo');
+// var jukebox = AUTOIDJB.deployed();
+var jukebox = AUTOIDJB.at('0x6b02b2424d67d9e9533ba87ab73bb12b32f55834'); // contract address goes here
 
 function addSong() {
   var url = document.getElementById("url").value;
