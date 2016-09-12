@@ -1,9 +1,11 @@
-// This file submits actions and listens to events on ethereum
+// app.js submits actions and listens to events on ethereum
+// consider moving off of truffle.
 var accounts;
 var account;
 var balance;
 
 var jukebox = AUTOIDJB.deployed();
+// var jukebox = AUTOIDJB.at('yoyoyoyoyo');
 
 function addSong() {
   var url = document.getElementById("url").value;
@@ -45,24 +47,25 @@ window.onload = function() {
     account = accounts[0];
   });
 
-  // var addedSongs = jukebox.AddSong({}, {from: "latest"});
-  // addedSongs.watch(function(err, result) {
-  //   console.log('Heard an event!');
+  var addedSongs = jukebox.AddSong({}, {from: "latest"});
+  addedSongs.watch(function(err, result) {
+    console.log('Heard an event!');
+    console.log(result);
+    if (result.args.id === "empty") {
+      return;
+    }
+    var newPlaylist = playlist.slice(0);
+    newPlaylist.push(result.args.id);
+    playlist = newPlaylist;
+  });
+
+  // var nextSongs = jukebox.NextSongs({}, {from: "latest"});
+  // nextSongs.watch(function(err, result) {
+  //   console.log('Next Songs coming up!');
   //   console.log(result);
   //   var newPlaylist = playlist.slice(0);
-  //   newPlaylist.push(result.args.id);
+  //   newPlaylist.push(result.args.id1);
+  //   newPlaylist.push(result.args.id2);
   //   playlist = newPlaylist;
-  // });
-
-  // TODO: remove entries which return string "empty"
-  var nextSongs = jukebox.NextSongs({from: "latest"});
-  nextSongs.watch(function(err, result) {
-    console.log('Next Songs coming up!');
-    console.log(result);
-    var newPlaylist = playlist.slice(0);
-    // TODO: add error handling on bad result
-    newPlaylist.push(result.args.id1);
-    newPlaylist.push(result.args.id2);
-    playlist = newPlaylist;
-  })
+  // })
 }
