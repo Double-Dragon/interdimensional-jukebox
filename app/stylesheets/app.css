@@ -1,6 +1,5 @@
 body {
-  margin-left: 25%;
-  margin-right: 25%;
+  margin: 10% 7% 0 7%;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -10,7 +9,7 @@ label {
 }
 
 input {
-  width: 500px;
+  width: 50%;
   padding: 5px;
   font-size: 16px;
 }
@@ -29,13 +28,13 @@ h1, h2 {
 
 h2 {
   color: #AAA;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 h3 {
   font-weight: normal;
   color: #AAA;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .black {
@@ -44,4 +43,13 @@ h3 {
 
 #balance {
   color: black;
+}
+
+.app-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-container {
+  width: 60%;
 }

@@ -7,18 +7,24 @@
   <script src="./app.js"></script>
 </head>
 <body>
+<div class='app-container'>
+<div class='input-container'>
   <h1>Interdimensional Jukebox</h1>
   <h2>An interdimensional experience</h2>
   <br>
   <h1>Send Song</h1>
-  <input id="url">URL</input>
-  <input id="title">title</input>
+  <h3>youtube ID</h2>
+  <input id="url"></input>
+  <h3>title</h2>
+  <input id="title"></input>
   <br><br><button id="send" onclick="addSong()">Add Song</button>
   <button onclick="logPlaylist()">Log Playlist</button>
   <button onclick="getNextSongs()">Request Next Songs</button>
   <br><br>
   <span id="status"></span>
-  <div id="player"></div>
+</div>
+<div id="player"></div>
+</div>
 </body>
 </html>
 
