@@ -17,6 +17,7 @@ contract AUTOIDJB {
     string title;
     string id;
     // uint timestamp;
+    // uintu length;
   }
 
   // adding songs should increase cost wrt. to videoLength;
@@ -50,19 +51,16 @@ contract AUTOIDJB {
     currentSongIndex = 0;
     lastSongChange = now;
     qLimit = 10;
-    videoLength = 10; // time of each video in seconds can be param of AUTOIDJB
+    videoLength = 10;
   }
 
-  // Everytime a song is added, an AddSong event emitted.
   function addSong (string title, string id) cleanPlaylist notFullPlaylist {
     playlist.push(song(title, id));
     AddSong(title, id);
   }
 
-  //TODO: add author and title to each field
-  //Could emit an event instead of returning
   function getNextSongs() cleanPlaylist {
-      string memory title1 = "";
+      string memory title1 = "empty";
       string memory id1 = "empty";
       string memory title2 = "empty";
       string memory id2 = "empty";
