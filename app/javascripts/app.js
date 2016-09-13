@@ -4,8 +4,12 @@ var accounts;
 var account;
 var balance;
 
+// add morden as test provider to listen in on events.
+web3 = new Web3(new Web3.providers.HttpProvider("https://morden.infura.io/CspWpgT4vuC2gVNShfNQ:443"));
+console.log(web3.eth.blockNumber);
+
+var jukebox = AUTOIDJB.at("0x6b02b2424d67d9e9533ba87ab73bb12b32f55834"); // contract address goes here
 // var jukebox = AUTOIDJB.deployed();
-var jukebox = AUTOIDJB.at('0x6b02b2424d67d9e9533ba87ab73bb12b32f55834'); // contract address goes here
 
 function addSong() {
   var url = document.getElementById("url").value;
