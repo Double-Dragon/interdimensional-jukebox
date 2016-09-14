@@ -18,12 +18,12 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-(function populatePlaylist() {
+(function populatePlaylistView() {
   playlistLIs = playlist.map(id => (`<li>${id}</li>`));
   playlistUL.innerHTML = playlistLIs.join('');
 })();
 
-function dequeuePlaylist() {
+function dequeuePlaylistView() {
   if (playlistLIs.length > 0) {
     playlistLIs.shift();
     playlistUL.innerHTML = playlistLIs.join('');
@@ -59,7 +59,7 @@ function playNextSong() {
   } else {
     setTimeout(() => {
       nextVideo = playlist.shift();
-      dequeuePlaylist();
+      dequeuePlaylistView();
       playNext(Object.assign({}, songTemplate, {videoId: nextVideo}));
     }, 10000);
   }
