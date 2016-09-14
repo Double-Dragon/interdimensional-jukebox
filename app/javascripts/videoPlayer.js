@@ -5,6 +5,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
+var playlistUL = document.getElementById('playlist');
+var playlistLIs = [];
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
@@ -14,6 +16,18 @@ function onYouTubeIframeAPIReady() {
       'onReady': onPlayerReady,
     }
   });
+}
+
+(function populatePlaylist() {
+  playlistLIs = playlist.map(id => (`<li>${id}</li>`));
+  playlistUL.innerHTML = playlistLIs.join('');
+})();
+
+function dequeuePlaylist() {
+  if (playlistLIs.length > 0) {
+    playlistLIs.shift();
+    playlistUL.innerHTML = playlistLIs.join('');
+  }
 }
 
 function onPlayerReady(event) {
@@ -45,6 +59,7 @@ function playNextSong() {
   } else {
     setTimeout(() => {
       nextVideo = playlist.shift();
+      dequeuePlaylist();
       playNext(Object.assign({}, songTemplate, {videoId: nextVideo}));
     }, 10000);
   }
