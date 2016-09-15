@@ -10,7 +10,7 @@ contract AUTOIDJB {
   event NextSongs(
     string id1, string id2, string id3,
     string id4, string id5, string id6);
-  event playlistInfo(uint currentIndex, uint currentLength);
+  event PlaylistInfo(uint currentIndex, uint currentLength);
 
   struct song {
     string title;
@@ -43,7 +43,7 @@ contract AUTOIDJB {
       }
     }
     _
-    // playlistInfo(currentSongIndex, playlist.length);
+    PlaylistInfo(currentSongIndex, playlist.length);
   }
 
   function AUTOIDJB() {
