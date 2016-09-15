@@ -55,13 +55,13 @@ function playNextSong() {
     setTimeout(() => {
       console.log('Playing Default');
       playNext(defaultSong)
-    }, 10000);
+    }, 20000);
   } else {
     setTimeout(() => {
       nextVideo = playlist.shift();
       dequeuePlaylistView();
       playNext(Object.assign({}, songTemplate, {videoId: nextVideo}));
-    }, 10000);
+    }, 20000);
   }
 }
 

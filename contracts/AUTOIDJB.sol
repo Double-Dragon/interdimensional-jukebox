@@ -8,10 +8,9 @@ contract AUTOIDJB {
 
   event AddSong(string title, string id);
   event NextSongs(
-    string title1, string id1,
-    string title2, string id2,
-    string title3, string id3);
-  event playlistInfo(uint currentIndex, uint currentLength);
+    string id1, string id2, string id3,
+    string id4, string id5, string id6);
+  event PlaylistInfo(uint currentIndex, uint currentLength);
 
   struct song {
     string title;
@@ -44,14 +43,14 @@ contract AUTOIDJB {
       }
     }
     _
-    playlistInfo(currentSongIndex, playlist.length);
+    PlaylistInfo(currentSongIndex, playlist.length);
   }
 
   function AUTOIDJB() {
     currentSongIndex = 0;
     lastSongChange = now;
-    qLimit = 10;
-    videoLength = 10;
+    qLimit = 1000;
+    videoLength = 20;
   }
 
   function addSong (string title, string id) cleanPlaylist notFullPlaylist {
@@ -60,31 +59,37 @@ contract AUTOIDJB {
   }
 
   function getNextSongs() cleanPlaylist {
-      string memory title1 = "empty";
-      string memory id1 = "empty";
-      string memory title2 = "empty";
-      string memory id2 = "empty";
-      string memory title3 = "empty";
-      string memory id3 = "empty";
+      string memory id1;
+      string memory id2;
+      string memory id3;
+      string memory id4;
+      string memory id5;
+      string memory id6;
     if ((playlist.length - currentSongIndex) >= 1) {
-      title1 = playlist[currentSongIndex].title;
       id1 = playlist[currentSongIndex].id;
     }
     if ((playlist.length - currentSongIndex) >= 2) {
-      title2 = playlist[currentSongIndex + 1].title;
       id2 = playlist[currentSongIndex + 1].id;
     }
     if ((playlist.length - currentSongIndex) >= 3) {
-      title3 = playlist[currentSongIndex + 2].title;
       id3 = playlist[currentSongIndex + 2].id;
     }
+    if ((playlist.length - currentSongIndex) >= 4) {
+      id4 = playlist[currentSongIndex + 3].id;
+    }
+    if ((playlist.length - currentSongIndex) >= 5) {
+      id5 = playlist[currentSongIndex + 4].id;
+    }
+    if ((playlist.length - currentSongIndex) >= 6) {
+      id6 = playlist[currentSongIndex + 5].id;
+    }
     NextSongs(
-      title1, id1,
-      title2, id2,
-      title3, id3);
+      id1, id2, id3,
+      id4, id5, id6);
   }
 
   function getQueuedPlaylistLength() cleanPlaylist notEmptyPlaylist returns (uint sIndex, uint eIndex) {
     return (currentSongIndex, playlist.length);
   }
 }
+
