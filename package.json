@@ -1,0 +1,23 @@
+{
+  "name": "interdimensional-jukebox",
+  "version": "1.0.0",
+  "description": "An interdimensional experience",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Double-Dragon/interdimensional-jukebox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Double-Dragon/interdimensional-jukebox/issues"
+  },
+  "homepage": "https://github.com/Double-Dragon/interdimensional-jukebox#readme"
+}
