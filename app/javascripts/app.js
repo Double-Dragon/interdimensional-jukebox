@@ -8,7 +8,7 @@ var balance;
 // web3 = new Web3(new Web3.providers.HttpProvider("https://morden.infura.io/CspWpgT4vuC2gVNShfNQ:443"));
 // console.log(web3.eth.blockNumber);
 
-var jukebox = AUTOIDJB.at("0x000901e9df262972237048f1d7837c52c4b57e6c"); // contract address goes here
+var jukebox = AUTOIDJB.at("0x8b794e0706079a226c1686da65bec46aed147213"); // contract address goes here
 // var jukebox = AUTOIDJB.deployed();
 
 function addSong() {
@@ -61,21 +61,21 @@ window.onload = function() {
     playlist = newPlaylist;
   });
 
-  // var nextSongs = jukebox.NextSongs({}, {from: "latest"});
-  // nextSongs.watch(function(err, result) {
-  //   console.log('Heard Event: NextSongs!');
-  //   console.log(result);
-  //   var newPlaylist = playlist.slice(0);
-  //   for (var each in result.args) {
-  //     if (newPlaylist.indexOf(result.args[each]) === -1 && result.args[each] !== "") {
-  //       newPlaylist.push(result.args[each]);
-  //     }
-  //   }
-  //   playlist = newPlaylist;
-  // });
-  // var playlistLength = jukebox.PlaylistInfo({}, {from: "latest"});
-  // playlistLength.watch(function(err, result) {
-  //   console.log('Heard Event: PlaylistInfo');
-  //   console.log(result);
-  // });
+  var nextSongs = jukebox.NextSongs({}, {from: "latest"});
+  nextSongs.watch(function(err, result) {
+    console.log('Heard Event: NextSongs!');
+    console.log(result);
+    // var newPlaylist = playlist.slice(0);
+    // for (var each in result.args) {
+    //   if (newPlaylist.indexOf(result.args[each]) === -1 && result.args[each] !== "") {
+    //     newPlaylist.push(result.args[each]);
+    //   }
+    // }
+    // playlist = newPlaylist;
+  });
+  var playlistLength = jukebox.PlaylistInfo({}, {from: "latest"});
+  playlistLength.watch(function(err, result) {
+    console.log('Heard Event: PlaylistInfo');
+    console.log(result);
+  });
 }
