@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Double-Dragon/interdimensional-jukebox/issues"
   },
-  "homepage": "https://github.com/Double-Dragon/interdimensional-jukebox#readme"
+  "homepage": "https://github.com/Double-Dragon/interdimensional-jukebox#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
