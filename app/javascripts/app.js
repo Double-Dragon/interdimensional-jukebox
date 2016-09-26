@@ -56,26 +56,26 @@ window.onload = function() {
   addedSongs.watch(function(err, result) {
     console.log('Heard event: AddSong!');
     console.log(result);
-    // var newPlaylist = playlist.slice(0);
-    // newPlaylist.push(result.args.id);
-    // playlist = newPlaylist;
-  });
-
-  var nextSongs = jukebox.NextSongs({}, {from: "latest"});
-  nextSongs.watch(function(err, result) {
-    console.log('Heard Event: NextSongs!');
-    console.log(result);
     var newPlaylist = playlist.slice(0);
-    for (var each in result.args) {
-      if (newPlaylist.indexOf(result.args[each]) === -1) {
-        newPlaylist.push(result.args[each]);
-      }
-    }
+    newPlaylist.push(result.args.id);
     playlist = newPlaylist;
   });
-  var playlistLength = jukebox.PlaylistInfo({}, {from: "latest"});
-  playlistLength.watch(function(err, result) {
-    console.log('Heard Event: PlaylistInfo');
-    console.log(result);
-  });
+
+  // var nextSongs = jukebox.NextSongs({}, {from: "latest"});
+  // nextSongs.watch(function(err, result) {
+  //   console.log('Heard Event: NextSongs!');
+  //   console.log(result);
+  //   var newPlaylist = playlist.slice(0);
+  //   for (var each in result.args) {
+  //     if (newPlaylist.indexOf(result.args[each]) === -1 && result.args[each] !== "") {
+  //       newPlaylist.push(result.args[each]);
+  //     }
+  //   }
+  //   playlist = newPlaylist;
+  // });
+  // var playlistLength = jukebox.PlaylistInfo({}, {from: "latest"});
+  // playlistLength.watch(function(err, result) {
+  //   console.log('Heard Event: PlaylistInfo');
+  //   console.log(result);
+  // });
 }

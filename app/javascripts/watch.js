@@ -18,16 +18,16 @@ window.onload = function() {
     playlist = newPlaylist;
   });
 
-  var nextSongs = jukebox.NextSongs({}, {from: "latest"});
-  nextSongs.watch(function(err, result) {
-    console.log('Heard Event: NextSongs!');
-    console.log(result);
-    var newPlaylist = playlist.slice(0);
-    for (var each in result.args) {
-      if (newPlaylist.indexOf(result.args[each]) === -1) {
-        newPlaylist.push(result.args[each]);
-      }
-    }
-    playlist = newPlaylist;
-  });
+  // var nextSongs = jukebox.NextSongs({}, {from: "latest"});
+  // nextSongs.watch(function(err, result) {
+  //   console.log('Heard Event: NextSongs!');
+  //   console.log(result);
+  //   var newPlaylist = playlist.slice(0);
+  //   for (var each in result.args) {
+  //     if (newPlaylist.indexOf(result.args[each]) === -1 && result.args[each] !== "") {
+  //       newPlaylist.push(result.args[each]);
+  //     }
+  //   }
+  //   playlist = newPlaylist;
+  // });
 }
