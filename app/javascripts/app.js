@@ -8,7 +8,7 @@ var balance;
 // web3 = new Web3(new Web3.providers.HttpProvider("https://morden.infura.io/CspWpgT4vuC2gVNShfNQ:443"));
 // console.log(web3.eth.blockNumber);
 
-var jukebox = AUTOIDJB.at("0x8b794e0706079a226c1686da65bec46aed147213"); // contract address goes here
+var jukebox = AUTOIDJB.at("0x6986de172ebce2049885f0f22f08abbe31195510"); // contract address goes here
 // var jukebox = AUTOIDJB.deployed();
 
 function addSong() {

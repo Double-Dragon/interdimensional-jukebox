@@ -43368,7 +43368,7 @@ window.addEventListener('load', function() {
 web3 = new Web3(new Web3.providers.HttpProvider("https://morden.infura.io/CspWpgT4vuC2gVNShfNQ:443"));
 
 // juxebox contract address goes here
-var jukebox = AUTOIDJB.at("0x8b794e0706079a226c1686da65bec46aed147213");
+var jukebox = AUTOIDJB.at("0x6986de172ebce2049885f0f22f08abbe31195510");
 
 var playlist = [];
 
