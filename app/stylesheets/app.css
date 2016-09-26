@@ -34,6 +34,7 @@ h3 {
   font-weight: normal;
   color: #AAA;
   font-size: 22px;
+  margin: 0;
 }
 
 .black {
@@ -60,3 +61,4 @@ h3 {
   align-items: center;
   margin-top: 3%;
 }
+

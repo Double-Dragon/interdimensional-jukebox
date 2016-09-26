@@ -10,7 +10,7 @@ var playlistLIs = [];
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
-    width: '640',
+    width: '680',
     videoId: 'cr0CcRNOI88',
     events: {
       'onReady': onPlayerReady,
@@ -55,13 +55,13 @@ function playNextSong() {
     setTimeout(() => {
       console.log('Playing Default');
       playNext(defaultSong)
-    }, 20000);
+    }, 30000);
   } else {
     setTimeout(() => {
       nextVideo = playlist.shift();
       dequeuePlaylistView();
       playNext(Object.assign({}, songTemplate, {videoId: nextVideo}));
-    }, 20000);
+    }, 30000);
   }
 }
 
