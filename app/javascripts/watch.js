@@ -1,7 +1,7 @@
 web3 = new Web3(new Web3.providers.HttpProvider("https://morden.infura.io/CspWpgT4vuC2gVNShfNQ:443"));
 
 // juxebox contract address goes here
-var jukebox = AUTOIDJB.at("0x86378e41ebe6be06ef83c6629723b533e2dd4a33");
+var jukebox = AUTOIDJB.at("0x000901e9df262972237048f1d7837c52c4b57e6c");
 
 var playlist = [];
 
@@ -18,16 +18,16 @@ window.onload = function() {
     playlist = newPlaylist;
   });
 
-  var nextSongs = jukebox.NextSongs({}, {from: "pending"});
+  var nextSongs = jukebox.NextSongs({}, {from: "latest"});
   nextSongs.watch(function(err, result) {
-    console.log('Heard Event: NextSongs');
+    console.log('Heard Event: NextSongs!');
     console.log(result);
-    // var newPlaylist = playlist.slice(0);
-    // for (var each in result.args) {
-    //   if (playlist.indexOf(result.args[each]) === -1) {
-    //     playlist.push(result.args[each]);
-    //   }
-    // }
-    // playlist = newPlaylist;
+    var newPlaylist = playlist.slice(0);
+    for (var each in result.args) {
+      if (newPlaylist.indexOf(result.args[each]) === -1) {
+        newPlaylist.push(result.args[each]);
+      }
+    }
+    playlist = newPlaylist;
   });
 }
