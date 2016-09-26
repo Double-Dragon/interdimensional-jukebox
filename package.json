@@ -1,0 +1,22 @@
+{
+  "name": "interdimensional-jukebox",
+  "version": "1.0.0",
+  "description": "Interdimensional Jukebox (IDJB) is an ethereum smart contract + mini client that lets you listen to a universal jukebox that lives on the ethereum blockchain.",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Double-Dragon/interdimensional-jukebox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Double-Dragon/interdimensional-jukebox/issues"
+  },
+  "homepage": "https://github.com/Double-Dragon/interdimensional-jukebox#readme"
+}
