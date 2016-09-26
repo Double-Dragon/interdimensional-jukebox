@@ -10,24 +10,26 @@
 </head>
 <body>
 <div class='app-container'>
+<div id="player"></div>
+<ul id="playlist">
+</ul>
 <div class='input-container'>
   <h1>Interdimensional Jukebox</h1>
   <h2>An interdimensional experience</h2>
   <br>
-  <h1>Send Song</h1>
-  <h3>youtube ID</h2>
-  <input id="url"></input>
-  <h3>title</h2>
-  <input id="title"></input>
+  <div class="input-fields">
+    <h1>Send Song</h1>
+    <h3>youtube ID</h2>
+    <input id="url"></input>
+    <h3>title</h2>
+    <input id="title"></input>
+  </div>
   <br><br><button id="send" onclick="addSong()">Add Song</button>
   <button onclick="logPlaylist()">Log Playlist</button>
   <button onclick="getNextSongs()">Request Next Songs</button>
   <br><br>
   <span id="status"></span>
 </div>
-<div id="player"></div>
-<ul id="playlist">
-</ul>
 </div>
 </body>
 </html>
