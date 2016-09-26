@@ -43437,7 +43437,7 @@ function onPlayerReady(event) {
 
 var stop = false;
 var defaultSong = {
-  'videoId': "oFRl4YmVP4Q",
+  'videoId': "uBBDMqZKagY",
   'startSeconds': 0,
   'endSeconds': 60,
   'suggestedQuality': 'large'
