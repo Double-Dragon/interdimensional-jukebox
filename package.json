@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Interdimensional Jukebox (IDJB) is an ethereum smart contract + mini client that lets you listen to a universal jukebox that lives on the ethereum blockchain.",
   "main": "truffle.js",
+  "engines": {
+    "node": "v6.1.0"
+  },
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
